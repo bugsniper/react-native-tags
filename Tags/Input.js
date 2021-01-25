@@ -20,6 +20,8 @@ const Input = (props) => {
         {...textInputProps}
         style={[styles.textInput, inputStyle]}
         value={value}
+        autoCompleteType={'email'}
+        keyboardType={'email-address'}
         onChangeText={onChangeText}
         onSubmitEditing={onSubmitEditing}
         underlineColorAndroid="transparent"

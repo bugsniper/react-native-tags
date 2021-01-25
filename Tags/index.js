@@ -38,6 +38,7 @@ class Tags extends React.Component {
   };
 
   onChangeText = text => {
+    const emailValidationRex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
     if (text.length === 0) {
       this.showLastTag();
     } else if (
@@ -46,7 +47,9 @@ class Tags extends React.Component {
       !text.match(new RegExp(`^[${this.props.createTagOnString.join("")}]+$`, 'g')) &&
       !(this.state.tags.indexOf(text.slice(0, -1).trim()) > -1)
     ) {
-      this.addTag(text.slice(0, -1));
+      if (emailValidationRex.test((text.slice(0, -1).trim()).toLowerCase())) {
+        this.addTag(text.slice(0, -1));
+      }
     } else {
       this.setState({ text });
     }
